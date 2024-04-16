@@ -44,21 +44,18 @@ def main():
     input_info = read_input()
     processor = Processor(input_info)
 
-    # print(input_info.to_string())
-    columns_index = list(range(input_info.states_amount))
-    # print(utils.print_matrix(processor.matrix, columns_index, input_info.terminal_sets))
-    final_state = processor.data.states_amount - 1
-    for input_string in input_info.input_strings:
-        if(input_string == "-"):
-            print("rejeita")
-            continue
+    with open('result.txt', 'w') as f:
+        final_state = processor.data.states_amount - 1
+        for input_string in input_info.input_strings:
+            if(input_string == "-"):
+                f.write("rejeita \n")
+                continue
 
-        last_state = processor.process(input_string)
-        if(int(last_state) != int(final_state)):
-            print("rejeita")
-        else:
-            print("aceita")
-
+            last_state = processor.process(input_string)
+            if(int(last_state) != int(final_state)):
+                f.write("rejeita \n")
+            else:
+                f.write("aceita \n")
 
 if __name__ == "__main__":
     main()
