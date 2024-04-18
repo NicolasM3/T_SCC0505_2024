@@ -98,14 +98,14 @@ def main():
     processor = Processor(input_info)
 
     with open('result.txt', 'w') as f:
-        final_state = processor.data.states_amount - 1
+        final_states = processor.data.acceptance_states
         for input_string in input_info.input_strings:
             if(input_string == "-"):
                 f.write("rejeita \n")
                 continue
 
             last_state = processor.process(input_string)
-            if(int(last_state) != int(final_state)):
+            if(last_state not in final_states):
                 f.write("rejeita \n")
             else:
                 f.write("aceita \n")
